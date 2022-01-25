@@ -1,3 +1,6 @@
+.globl multiply                  # expose multiply to adder files 
+.globl faculty                   # expose faculty to other files
+
 #main function för testing
 main:
 li $a0, 10
@@ -26,12 +29,12 @@ faculty:
 	
 	add   $t0, $a0, $zero    # index counter to $a0
 	li	$t1, 1     	 # index limit to 0
+	addi $sp, $sp, -20	#allocates 20 bytes to stack
 	loops:
 		#sets a1 = i & a2 = fac
 		add $a1,$t0,$zero
 		add $a2,$t3,$zero
 		#saves t0 & t1 in s0 & s1
-		addi $sp, $sp, -20	#allocates 20 bytes to stack
 		sw $s0, 0($sp)		#saves s0
 		sw $s1, 8($sp)		#saves s1
 		sw $ra, 16($sp)		#saves return
